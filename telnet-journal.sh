@@ -24,7 +24,7 @@ echo -e "\u001B[2J"
 # count lines of file, loop through contents to create less/more-like scrolling
 # wrap at 80 columns, furthermore assume 24 rows
 lines="$(cat $dir/$1.txt | fold -w 80 -s | wc -l)"
-for (( i = 0; i < "$lines" ;k=i)); do
+for (( i = 1; i < "$lines";)); do
 echo -e "$(cat $dir/$1.txt | fold -w 80 -s)" | head -n "$(( i + 21 ))" | tail  -n "$(( i + 21 ))" 
 echo -e "\nPress enter to continue. Type q to quit" 
 # inputs to give user control scrolling down
