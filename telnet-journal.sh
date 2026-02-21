@@ -27,8 +27,11 @@ lines="$(cat $dir/$1.txt | fold -w 80 -s | wc -l)"
 for (( i = 0; i < "$lines" ;k=i)); do
 echo -e "$(cat $dir/$1.txt | fold -w 80 -s)" | head -n "$(( i + 21 ))" | tail  -n "$(( i + 21 ))" 
 echo -e "\nPress enter to continue. Type q to quit" 
-# seperate function for inputs to give user control scrolling down
+# inputs to give user control scrolling down
 scroll
+	if [[ "$enter" = "q" ]]; then
+ 	return
+ 	fi
 i=$(( i + 21 ))
 done
 
@@ -41,10 +44,6 @@ esac
 scroll() {
 read "enter"
 enter="$(echo "$enter"  | sed -e "s/\\r//")"
-
-	if [[ "$enter" = "q" ]]; then
- 	return
- 	fi
 }
 
 getlist() {
